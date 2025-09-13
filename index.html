@@ -354,7 +354,9 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                      <img src="chess1.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
+                         alt="Chess Position 1" class="chess-img" onclick="openModal(this)" 
+                         style="background: #ddd; min-height: 300px;">
                     <p><em>Black to move - Can you spot the mate in one?</em></p>
                 </div>
                 <div class="board-container">
@@ -425,7 +427,9 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                     <img src="chess2.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
+                         alt="Chess Position 2" class="chess-img" onclick="openModal(this)"
+                         style="background: #ddd; min-height: 300px;">
                     <p><em>White to move - What's the strongest continuation?</em></p>
                 </div>
                 <div class="board-container">
@@ -498,7 +502,7 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                     <img src="chess3.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="chess3.png" alt="Chess Position 3" class="chess-img" onclick="openModal(this)">
                     <p><em>Black to move - Find the winning move!</em></p>
                 </div>
                 <div class="board-container">
@@ -510,9 +514,13 @@
             <h3>AI Performance Analysis:</h3>
             <div class="ai-responses">
                 <div class="ai-card correct">
-                    <div class="ai-name">ChatGPT</div>
-                    <div class="ai-verdict correct-verdict">✓ Correct</div>
-                    <button class="show-response-btn" onclick="toggleResponse('chatgpt3')">View Response</button>
+                    <div class="ai-header">
+                        <div class="ai-info">
+                            <div class="ai-name">ChatGPT</div>
+                            <div class="ai-verdict correct-verdict">✓ Correct</div>
+                        </div>
+                        <button class="show-response-btn" onclick="toggleResponse('chatgpt3')">View Response</button>
+                    </div>
                     <div id="chatgpt3" class="response-content">
                         <p><strong>Response:</strong> "...Qxg2# Black captures the pawn on g2 with the queen — the queen on g2 is protected by the bishop on c6 and g1 is also attacked, so White's king on h1 has no legal escape: mate."</p>
                         <p><strong>Analysis:</strong> Perfect analysis with clear explanation of the mating mechanism.</p>
@@ -520,11 +528,61 @@
                 </div>
 
                 <div class="ai-card wrong">
-                    <div class="ai-name">Claude AI</div>
-                    <div class="ai-verdict wrong-verdict">✗ Wrong</div>
-                    <button class="show-response-btn" onclick="toggleResponse('claude3')">View Response</button>
+                    <div class="ai-header">
+                        <div class="ai-info">
+                            <div class="ai-name">Claude AI</div>
+                            <div class="ai-verdict wrong-verdict">✗ Wrong</div>
+                        </div>
+                        <button class="show-response-btn" onclick="toggleResponse('claude3')">View Response</button>
+                    </div>
                     <div id="claude3" class="response-content">
                         <p><strong>Response:</strong> "The best move for Black is Qb1+ (Queen to b1 with check)."</p>
+                        <p><strong>Analysis:</strong> Missed the immediate mate and suggested a move that doesn't lead to the quickest win.</p>
+                    </div>
+                </div>
+
+                <div class="ai-card wrong">
+                    <div class="ai-header">
+                        <div class="ai-info">
+                            <div class="ai-name">Microsoft Copilot</div>
+                            <div class="ai-verdict wrong-verdict">✗ Wrong</div>
+                        </div>
+                        <button class="show-response-btn" onclick="toggleResponse('copilot3')">View Response</button>
+                    </div>
+                    <div id="copilot3" class="response-content">
+                        <p><strong>Response:</strong> "Best Move: ...Qa3+. The Black Queen moves from b2 to a3, checking the White King on a1."</p>
+                        <p><strong>Analysis:</strong> Completely misidentified king positions and board layout.</p>
+                    </div>
+                </div>
+
+                <div class="ai-card wrong">
+                    <div class="ai-header">
+                        <div class="ai-info">
+                            <div class="ai-name">Google Gemini</div>
+                            <div class="ai-verdict wrong-verdict">✗ Wrong</div>
+                        </div>
+                        <button class="show-response-btn" onclick="toggleResponse('gemini3')">View Response</button>
+                    </div>
+                    <div id="gemini3" class="response-content">
+                        <p><strong>Response:</strong> "The best move for black is ...Qxf2+. This move initiates a forced checkmate in two moves."</p>
+                        <p><strong>Analysis:</strong> Incorrect move suggestion, showing poor board visualization.</p>
+                    </div>
+                </div>
+
+                <div class="ai-card correct">
+                    <div class="ai-header">
+                        <div class="ai-info">
+                            <div class="ai-name">Perplexity AI</div>
+                            <div class="ai-verdict correct-verdict">✓ Correct</div>
+                        </div>
+                        <button class="show-response-btn" onclick="toggleResponse('perplexity3')">View Response</button>
+                    </div>
+                    <div id="perplexity3" class="response-content">
+                        <p><strong>Response:</strong> "The best move for Black in this position is Qxg2#, which delivers immediate checkmate. The black queen on b2 captures the pawn on g2, putting the White king on h1 in check, and there are no pieces that can block, capture, or allow escape."</p>
+                        <p><strong>Analysis:</strong> Excellent analysis with complete understanding of the position.</p>
+                    </div>
+                </div>
+            </div><p><strong>Response:</strong> "The best move for Black is Qb1+ (Queen to b1 with check)."</p>
                         <p><strong>Analysis:</strong> Missed the immediate mate and suggested a move that doesn't lead to the quickest win.</p>
                     </div>
                 </div>
