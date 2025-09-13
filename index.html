@@ -265,14 +265,35 @@
                 grid-template-columns: 1fr;
             }
             
-            h1 {
-                font-size: 2em;
-            }
-            
             .position-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: clamp(5px, 2vw, 10px);
+            }
+            
+            .ai-responses {
+                grid-template-columns: 1fr;
+            }
+            
+            .score-summary {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: clamp(8px, 2vw, 15px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chess-board {
+                gap: clamp(8px, 2vw, 15px);
+            }
+            
+            .ai-card {
+                padding: clamp(8px, 2vw, 12px);
+            }
+            
+            .close {
+                top: clamp(5px, 1vw, 10px);
+                right: clamp(15px, 3vw, 25px);
+                font-size: clamp(25px, 5vw, 35px);
             }
         }
 
@@ -333,7 +354,9 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                    <img src="chess1.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
+                         alt="Chess Position 1" class="chess-img" onclick="openModal(this)" 
+                         style="background: #ddd; min-height: 300px;">
                     <p><em>Black to move - Can you spot the mate in one?</em></p>
                 </div>
                 <div class="board-container">
@@ -404,7 +427,9 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                    <img src="chess2.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
+                         alt="Chess Position 2" class="chess-img" onclick="openModal(this)"
+                         style="background: #ddd; min-height: 300px;">
                     <p><em>White to move - What's the strongest continuation?</em></p>
                 </div>
                 <div class="board-container">
@@ -477,7 +502,9 @@
             
             <div class="chess-board">
                 <div class="board-container">
-                    <img src="chess3.png" alt="Chess Position 1" class="chess-img" onclick="openModal(this)">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==" 
+                         alt="Chess Position 3" class="chess-img" onclick="openModal(this)"
+                         style="background: #ddd; min-height: 300px;">
                     <p><em>Black to move - Find the winning move!</em></p>
                 </div>
                 <div class="board-container">
@@ -696,9 +723,13 @@
             });
         });
 
+        // Add click sound effect (optional)
         function addClickSound() {
+            // You can add audio feedback here if desired
             console.log('Click registered!');
         }
+
+        // Add hover effects for AI cards
         document.querySelectorAll('.ai-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
