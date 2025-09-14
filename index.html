@@ -951,7 +951,6 @@
             const element = document.getElementById(id);
             const button = element.previousElementSibling;
             
-
             const allResponses = document.querySelectorAll('.response-content');
             const allButtons = document.querySelectorAll('.show-response-btn');
             
@@ -962,7 +961,6 @@
                 }
             });
 
-    
             if (element.style.display === 'block') {
                 element.style.display = 'none';
                 button.textContent = 'View Detailed Response';
@@ -994,7 +992,6 @@
             }
         });
 
-     
         document.querySelector('.modal-content').addEventListener('click', function(event) {
             event.stopPropagation();
         });
