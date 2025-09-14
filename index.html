@@ -98,6 +98,34 @@
             margin-bottom: 20px;
         }
 
+        .analysis-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .score-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .score-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .score-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
         .board-container {
             text-align: center;
             max-width: 400px;
@@ -313,7 +341,7 @@
         </header>
 
         <div class="intro-section">
-            <h2>🎯 Research Question & Theme</h2>
+            <h2>Research Question & Theme</h2>
             <p><strong>Question:</strong> How well can modern AI language models analyze chess positions and identify the best moves?</p>
             
             <p><strong>Why This Topic?</strong></p>
@@ -328,7 +356,7 @@
             </ul>
 
             <div class="interactive-hint">
-                💡 Click on chess board images to enlarge them • Click AI names to see their full responses
+                Click on chess board images to enlarge them • Click AI names to see their full responses
             </div>
         </div>
 
@@ -337,7 +365,6 @@
             <p>In this comprehensive analysis, we present various chess positions to 5 leading AI models to evaluate their understanding of chess tactics, strategy, and endgames. Each position tests different aspects of chess knowledge, from basic tactics to complex checkmate patterns.</p>
         </div>
 
-        <!-- Position 1: Back Rank Mate -->
         <div class="chess-position">
             <div class="position-header">
                 <div class="position-title">Position 1: Next best move for black</div>
@@ -351,34 +378,36 @@
             </div>
             
             <div class="position-description">
-                <strong>Prompt:</strong> It’s Black to move. What is the best next move? Please analyze the image and tell me the best move for Black.
+                <strong>Prompt:</strong> It's Black to move. What is the best next move? Please analyze the image and tell me the best move for Black.
             </div>
             
             <div class="ai-responses">
                 <div class="ai-card correct">
                     <div class="ai-name">ChatGPT</div>
-                    <div class="ai-verdict correct-verdict">✓ Correct</div>
+                    <div class="ai-verdict correct-verdict">✓ Correct (wrong explanation)</div>
                     <button class="show-response-btn" onclick="toggleResponse('chatgpt1')">View Response</button>
                     <div id="chatgpt1" class="response-content">
-                        <p><strong>Response:</strong> "I see the position clearly now. It’s Black to move.
-•	White’s king is on g1.
-•	Black’s queen is not on the board, but Black has very active pieces (bishop on h3, bishop on h4, knight on g4, knight on b1, rook on h8).
-•	White’s last move was knight to c4, trying to defend.
-The immediate tactical situation:
-Black has a forced checkmate in one move.
-The best move is:
-Bxf2# (Bishop captures pawn on f2, checkmate).
-Explanation:
-•	The bishop on h4 takes the pawn on f2.
-•	White’s king on g1 has no escape squares:
-o	Can’t move to h2 (blocked by own pawn).
-o	Can’t move to f1 or f2 (occupied/attacked).
-o	Can’t move to h1 (rook blocks).
-•	No White piece can capture the bishop or block the check.
-So the game ends instantly with checkmate.
-👉 Best move: Bxf2#.
-"</p>
-                        <p><strong>Analysis:</strong> Perfect analysis with clear explanation of the mating mechanism.</p>
+                        <p>
+                            <strong>Response:</strong> 
+                            "I see the position clearly now. It's Black to move.
+                            •	White's king is on g1.
+                            •	Black's queen is not on the board, but Black has very active pieces (bishop on h3, bishop on h4, knight on g4, knight on b1, rook on h8).
+                            •	White's last move was knight to c4, trying to defend.
+                            The immediate tactical situation:
+                            Black has a forced checkmate in one move.
+                            The best move is:
+                            Bxf2# (Bishop captures pawn on f2, checkmate).
+                            Explanation:
+                            •	The bishop on h4 takes the pawn on f2.
+                            •	White's king on g1 has no escape squares:
+                            o	Can't move to h2 (blocked by own pawn).
+                            o	Can't move to f1 or f2 (occupied/attacked).
+                            o	Can't move to h1 (rook blocks).
+                            •	No White piece can capture the bishop or block the check.
+                            So the game ends instantly with checkmate.
+                            Best move: Bxf2#."
+                        </p>
+                        <p><strong>Analysis:</strong> The chatgpt assumed that there is no other pieces between h1 and rook, hence thought it is a checkmate. Poor board analysis</p>
                     </div>
                 </div>
 
@@ -387,8 +416,22 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('claude1')">View Response</button>
                     <div id="claude1" class="response-content">
-                        <p><strong>Response:</strong> "The best move for Black is <span class="move-notation">Nxe4+</span> (Knight takes the pawn on e4 with check). This wins material and forces White's king to an even more exposed position."</p>
-                        <p><strong>Analysis:</strong> Completely missed the immediate checkmate, focusing on material gain instead.</p>
+                        <p><strong>Response:</strong> 
+                        "Looking at this chess position, I can see Black is in a very strong tactical situation.
+The best move for Black is Nxe4+ (Knight takes the pawn on e4 with check).
+Here's the analysis:
+1.	Nxe4+ - The black knight on b4 captures the white pawn on e4, giving check to the white king on c3.
+2.	After this move, White has limited options: 
+o	If the king moves (Kd2, Kc2, Kb3, etc.), Black has won a pawn and maintained a strong position
+o	White cannot recapture the knight immediately because the king is in check and must move first
+3.	This move is particularly strong because: 
+o	It wins material (the pawn on e4)
+o	It forces White's king to an even more exposed position
+o	Black maintains the initiative with the knight actively placed in the center
+o	The white king remains vulnerable to further attacks
+The position shows Black already has a significant advantage with the exposed white king, and Nxe4+ capitalizes on this by winning material while keeping White under pressure."
+                        </p>
+                        <p><strong>Analysis:</strong> Completely misread the position and suggested an impossible move. focusing on material gain instead of the win.</p>
                     </div>
                 </div>
 
@@ -397,8 +440,26 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('copilot1')">View Response</button>
                     <div id="copilot1" class="response-content">
-                        <p><strong>Response:</strong> "Best Move: <span class="move-notation">...Ng5--h3+</span>. The knight on g5 jumps to h3, checking the White king. This looks like a constructed puzzle, possibly leading to a forced mate in a few moves."</p>
-                        <p><strong>Analysis:</strong> Identified tactical potential but suggested a longer sequence instead of the immediate mate.</p>
+                        <p><strong>Response:</strong> "Thanks for the challenge—this position is wild and full of tactical tension! 🧠♟️
+Important Context
+•	Black has a strong attacking setup around the White king on g1.
+•	Key attackers: Black bishops on h3 and h4, knights on g5 and f3.
+•	White's king is boxed in with limited escape squares.
+•	White's defensive pieces are far from the action.
+Best Move: ...Ng5-h3+
+This move unleashes a devastating check:
+•	The knight on g5 jumps to h3, checking the White king.
+•	The White king on g1 has no legal moves due to:
+o	g1 is occupied.
+o	h1 and f1 are covered by Black's pieces.
+o	g2 is blocked by White's own pawn.
+•	White is forced to capture the knight with g2xh3, opening the g-file.
+Follow-up Threats
+After g2xh3, Black can continue the attack with:
+•	...Bxh3, reactivating the bishop and keeping pressure.
+•	Or even consider ...Qxh3 if the queen is lurking off-board and ready to join.
+This looks like a constructed puzzle, possibly leading to a forced mate in a few moves. If you'd like, I can walk you through the full sequence to checkmate. Want to go deeper?"</p>
+                        <p><strong>Analysis:</strong>  Completely misread the position and suggested an impossible move.</p>
                     </div>
                 </div>
 
@@ -407,24 +468,39 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('gemini1')">View Response</button>
                     <div id="gemini1" class="response-content">
-                        <p><strong>Response:</strong> "The next best move for black is <span class="move-notation">Qf2+</span>. This move initiates a forced checkmate sequence. After Qf2+, White's only legal move is to capture the knight on f3 with the pawn, leading to gxf3."</p>
+                        <p><strong>Response:</strong> 
+                        •	Query successful
+The next best move for black is Qf2+. This move initiates a forced checkmate sequence. After Qf2+, White's only legal move is to capture the knight on f3 with the pawn, leading to gxf3. This then allows black to continue the attack with Ng3+, which leads to a swift checkmate.
+
+
+                        </p>
                         <p><strong>Analysis:</strong> Suggested a non-existent move and provided incorrect analysis of the position.</p>
                     </div>
                 </div>
 
                 <div class="ai-card correct">
                     <div class="ai-name">Perplexity</div>
-                    <div class="ai-verdict correct-verdict">✓ Correct</div>
+                    <div class="ai-verdict correct-verdict">✓ Correct (wrong explanation)</div>
                     <button class="show-response-btn" onclick="toggleResponse('perplexity1')">View Response</button>
                     <div id="perplexity1" class="response-content">
-                        <p><strong>Response:</strong> "The best move for Black in this position is <span class="move-notation">Bxf2#</span>, delivering immediate checkmate. The black bishop on h4 moves to f2, where the White king on f1 has no escape squares."</p>
-                        <p><strong>Analysis:</strong> Perfect identification of the checkmate and clear explanation of why it's forced.</p>
+                        <p><strong>Response:</strong> 
+                       The best move for Black in this position is Bxf2#, delivering immediate checkmate. The black bishop on h4 moves to f2, where the White king on f1 has no escape squares and cannot capture or block the bishop, making this a classic bishop-delivered checkmate.
+Why Bxf2# Is Checkmate
+•	The bishop on f2 is protected by the bishop on h3, so the king cannot capture it.
+•	All potential escape squares for the White king are covered: g1 and e1 are occupied, and the White pawns and pieces block other exits.
+•	There are no White pieces that can capture the bishop on f2 or block the check.
+Alternate Considerations
+•	No other move delivers mate or a decisive advantage as quickly; any other move would allow White to defend or escape.
+•	Tactical motifs in this structure show that bishop-based mates on the king's castled side are often unstoppable when supported as in this diagram.
+Bxf2# is the only immediate and forced checkmate in the position, ending the game for Black.
+                        
+                        </p>
+                        <p><strong>Analysis:</strong> Correct move but wrong future analysis</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Position 2: Tactical Strike -->
         <div class="chess-position">
             <div class="position-header">
                 <div class="position-title">Position 2: Tactical Strike</div>
@@ -438,7 +514,7 @@ So the game ends instantly with checkmate.
             </div>
             
             <div class="position-description">
-                <strong>Challenge:</strong> White to move. Find the best tactical continuation.
+                <strong>Challenge:</strong> White to move. What is the next best move for white
             </div>
             
             <div class="ai-responses">
@@ -447,9 +523,24 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong initially, then ✓ Correct</div>
                     <button class="show-response-btn" onclick="toggleResponse('chatgpt2')">View Response</button>
                     <div id="chatgpt2" class="response-content">
-                        <p><strong>Initial Response:</strong> "<span class="move-notation">Nxe6!</span> A tactical shot - the knight from g5 jumps into e6, attacking Black's queen."</p>
-                        <p><strong>After correction:</strong> "You're right - let's carefully re-evaluate. The best move is <span class="move-notation">Qxf7#</span>. That's immediate checkmate."</p>
-                        <p><strong>Analysis:</strong> Initially missed the mate but corrected after being told it was wrong.</p>
+                        <p><strong>Initial Response:</strong> 
+                        Thought for 2m 1s
+1. Nxe6!
+A tactical shot — the knight from g5 jumps into e6, attacking Black's queen and creating decisive threats.
+If Black tries to block with ...Qe7, White replies 2. Nxf8 (winning the bishop on f8).
+The move puts Black in a very uncomfortable position and wins material (or leads to a winning attack) — it's the best practical continuation for White.
+<strong>You said: wrong</strong>
+
+<strong>ChatGPT said:</strong>
+You're right — let's carefully re-evaluate the position.
+It's White to move. The queen is on f3, knight on g5, and Black's king is still in the center.
+Here the best move is 1. Qxf7#.
+That's immediate checkmate: the White queen on f3 moves to f7, supported by the knight on g5. The Black king has no escape squares, no pieces can block, and nothing can capture the queen.
+Would you like me to also walk you through why none of Black's other defenses can stop this mate?
+
+                        
+                        </p>
+                        <p><strong>Analysis:</strong> Initially missed the mate but corrected after being told it was wrong. more advanceed analysis and learning</p>
                     </div>
                 </div>
 
@@ -458,8 +549,19 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('claude2')">View Response</button>
                     <div id="claude2" class="response-content">
-                        <p><strong>Response:</strong> "The best move for White is <span class="move-notation">Qxd8+</span> (Queen captures the queen on d8 with check). This wins Black's queen, which is the most valuable piece on the board."</p>
-                        <p><strong>Analysis:</strong> Missed the immediate checkmate, focusing on material gain instead.</p>
+                        <p><strong>Response:</strong> 
+                        Looking at this position, the best move for White is Qxd8+ (Queen captures the queen on d8 with check).
+Here's the analysis:
+1.	Qxd8+ - The white queen on c3 captures the black queen on d8, giving check to the black king on e8.
+2.	This is clearly the strongest move because: 
+o	It wins Black's queen, which is the most valuable piece on the board
+o	It gives check, forcing Black's king to respond
+o	After Black recaptures (likely with Bxd8), White has won a full queen for nothing, achieving a decisive material advantage
+3.	The position after this exchange would be completely winning for White, as being up a queen is typically enough to convert into victory with proper technique.
+This is a straightforward tactical shot where White can simply capture Black's undefended queen while simultaneously giving check. Black has no way to avoid losing the queen, making this move both forced and winning.
+
+                        </p>
+                        <p><strong>Analysis:</strong>  Completely misread the position and suggested an impossible move.</p>
                     </div>
                 </div>
 
@@ -468,7 +570,22 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict correct-verdict">✓ Correct (wrong explanation)</div>
                     <button class="show-response-btn" onclick="toggleResponse('copilot2')">View Response</button>
                     <div id="copilot2" class="response-content">
-                        <p><strong>Response:</strong> "Best Move: <span class="move-notation">Qf3xf7+</span>. This is a powerful tactical strike: The White Queen captures the pawn on f7, delivering check."</p>
+                        <p><strong>Response:</strong>
+                        Great setup, Akshara—this position is rich with tactical possibilities. Let's break it down and find the strongest continuation for White.
+Key Tactical Snapshot
+•	White Queen on f3 and Knight on g5 are eyeing the kingside.
+•	Black King is on e8, still castled but vulnerable.
+•	White Bishop on c1 is undeveloped, but could join quickly.
+•	White has a solid pawn center, and Black just played ...c4, trying to disrupt it.
+Best Move: ♕f3xf7+
+This is a powerful tactical strike:
+•	The White Queen captures the pawn on f7, delivering check.
+•	The Black King on e8 is forced to move, as no piece can block or capture the queen.
+•	After ...Ke7, White can follow up with ♘g5xe6+, forking the king and rook, or prepare ♗xc4 to develop and pressure the center.
+This move initiates a kingside assault, exploiting Black's underdeveloped position and loose pawn structure. It's aggressive, direct, and opens the door for a decisive attack.
+Want to explore the full sequence or test a few variations? I'm game.
+
+                        </p>
                         <p><strong>Analysis:</strong> Found the correct move but gave incorrect explanation about the follow-up.</p>
                     </div>
                 </div>
@@ -478,7 +595,17 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('gemini2')">View Response</button>
                     <div id="gemini2" class="response-content">
-                        <p><strong>Response:</strong> "The next best move for white is <span class="move-notation">Qe4+</span>. The white queen moves to e4, putting the black king on h6 in check."</p>
+                        <p><strong>Response:</strong>
+                            Based on the images you provided, the current position is: White: King on a1, Rook on d1, Queen on g2, Pawns on g3, a3, h3. Black: King on h6, Queen on b2, Rook on f8, Bishop on c6, Pawns on g6, e4, d4, b5.
+It is white to move.
+The next best move for white is Qe4+.
+Here's the analysis of this move and why it's the best:
+1.	Qe4+ The white queen moves to e4, putting the black king on h6 in check.
+2.	Kh5 Black's king is forced to move to h5 to escape the check.
+3.	Qxe4 The white queen captures the black pawn on e4. This move is a discovered attack on the black king on h5.
+The combination starts with a check, forcing the black king to a less-defended square, and then the queen can capture the pawn. This improves white's position significantly and puts black on the defensive.
+
+                             </p>
                         <p><strong>Analysis:</strong> Completely misread the position and suggested an impossible move.</p>
                     </div>
                 </div>
@@ -488,14 +615,31 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict correct-verdict">✓ Correct (wrong explanation)</div>
                     <button class="show-response-btn" onclick="toggleResponse('perplexity2')">View Response</button>
                     <div id="perplexity2" class="response-content">
-                        <p><strong>Response:</strong> "The best move for White in this position is <span class="move-notation">Qxf7+</span>, which puts the Black king in check and leverages the knight on g5 to threaten a swift mate."</p>
+                        <p><strong>Response:</strong> 
+                        The best move for White in this position is Qxf7+, which puts the Black king in check and leverages the knight on g5 to threaten a swift mate.
+Move Explanation
+•	Qxf7+ uses the queen to capture the pawn on f7, checking the king.
+•	The Black king must move to e7, as blocking with the knight or bishop is not possible.
+•	After Qxf7+, White can continue with Qf7xe6 or potentially bring in more pieces for a quick attack.
+Key Points
+•	White exploits Black's weakened kingside and lack of development.
+•	This sequence can lead to a decisive advantage or even a quick checkmate with coordination between the queen and knight.
+Principal Variation:
+
+Qxf7+ - White queen checks on f7
+...	Only move is Ke7
+Qf7xe6+/N moves -Continue attack
+
+Playing Qxf7+ is powerful and highly recommended in this position.
+
+                        
+                        </p>
                         <p><strong>Analysis:</strong> Correct move but incorrect explanation about the continuation.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Position 3: Checkmate Pattern -->
         <div class="chess-position">
             <div class="position-header">
                 <div class="position-title">Position 3: Queen & Bishop Mate</div>
@@ -509,7 +653,7 @@ So the game ends instantly with checkmate.
             </div>
             
             <div class="position-description">
-                <strong>Challenge:</strong> Black to move. Find the checkmate in one move.
+                <strong>Challenge:</strong> Black to move. which is the next best move analyse the image and tell me next best move for black
             </div>
             
             <div class="ai-responses">
@@ -518,7 +662,12 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict correct-verdict">✓ Correct</div>
                     <button class="show-response-btn" onclick="toggleResponse('chatgpt3')">View Response</button>
                     <div id="chatgpt3" class="response-content">
-                        <p><strong>Response:</strong> "<span class="move-notation">...Qxg2#</span>. Black captures the pawn on g2 with the queen — the queen on g2 is protected by the bishop on c6 and g1 is also attacked, so White's king on h1 has no legal escape: mate."</p>
+                        <p><strong>Response:</strong>
+                        Thought for 3m 51s
+...Qxg2#
+Black captures the pawn on g2 with the queen — the queen on g2 is protected by the bishop on c6 and g1 is also attacked, so White's king on h1 has no legal escape: mate.
+
+                        </p>
                         <p><strong>Analysis:</strong> Perfect identification of the checkmate pattern and clear explanation.</p>
                     </div>
                 </div>
@@ -528,7 +677,21 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('claude3')">View Response</button>
                     <div id="claude3" class="response-content">
-                        <p><strong>Response:</strong> "The best move for Black is <span class="move-notation">Qb1+</span> (Queen to b1 with check). This forces the white king to move to an even more precarious position."</p>
+                        <p><strong>Response:</strong> 
+                        Looking at this position, the best move for Black is Qb1+ (Queen to b1 with check).
+Here's the analysis:
+1.	Qb1+ - The black queen moves from b2 to b1, giving check to the white king on h6.
+2.	This move is extremely strong because: 
+o	It forces the white king to move to an even more precarious position
+o	The white king has very limited escape squares (likely Kg5 or Kh5)
+o	It maintains Black's attacking momentum against the exposed white king
+o	Black keeps the initiative with a powerful attack
+3.	After White's forced king move, Black can continue the attack with moves like: 
+o	Following up with more checks to drive the king further into danger
+o	Potentially coordinating with other pieces for a mating attack
+The white king is already in a very dangerous position on h6, far from safety, and Qb1+ exploits this by forcing it into an even worse situation. This appears to be part of a winning attack for Black, as the white king has few good squares and Black's pieces are well-coordinated for the assault.
+
+                        </p>
                         <p><strong>Analysis:</strong> Missed the immediate checkmate, suggesting a longer attacking sequence instead.</p>
                     </div>
                 </div>
@@ -538,7 +701,25 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('copilot3')">View Response</button>
                     <div id="copilot3" class="response-content">
-                        <p><strong>Response:</strong> "Best Move: <span class="move-notation">...Qa3+</span>. The Black Queen moves from b2 to a3, checking the White King on a1. The White King has no escape—it's trapped on the edge."</p>
+                        <p><strong>Response:</strong> 
+                        Thanks for the sharp puzzle, Akshara. Let's break down the position and find the strongest move for Black.
+Key Tactical Details
+•	White King is on a1, cornered and vulnerable.
+•	White Queen is on f7, threatening but not defending the king.
+•	White Rook on e8, and pawn on e7—very close to promotion.
+•	Black Queen is on b2, eyeing the long diagonal.
+•	Black Bishop is on c6, controlling key central squares.
+•	Black King is on h6, safe for now.
+Best Move: ...Qa3+
+This move is a powerful check:
+•	The Black Queen moves from b2 to a3, checking the White King on a1.
+•	The White King has no escape—it's trapped on the edge.
+•	White must respond, likely by blocking with the White Rook from e8 to a8, or sacrificing the Queen if possible.
+This move shifts momentum and forces White into a defensive posture, buying Black time to neutralize the dangerous e7 pawn and White Queen.
+If you'd like to explore the full sequence or calculate whether this leads to a win or draw, I'm happy to dive deeper!
+
+                        
+                        </p>
                         <p><strong>Analysis:</strong> Completely misread the board position and king location.</p>
                     </div>
                 </div>
@@ -548,7 +729,15 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict wrong-verdict">✗ Wrong</div>
                     <button class="show-response-btn" onclick="toggleResponse('gemini3')">View Response</button>
                     <div id="gemini3" class="response-content">
-                        <p><strong>Response:</strong> "The best move for black is <span class="move-notation">...Qxf2+</span>. This move initiates a forced checkmate in two moves."</p>
+                        <p><strong>Response:</strong> 
+                        The best move for black is ...Qxf2+. This move initiates a forced checkmate in two moves.
+Here is the sequence:
+1.	...Qxf2+ (Black's queen gives check.)
+2.	Kh1 (The only move for the white king to escape the check.)
+3.	Qh4# (The black queen moves to h4, delivering checkmate. The white king has no squares to move to, and the queen cannot be captured or blocked.)
+This combination is a classic example of a back-rank mate where the white king is trapped behind its own pawns.
+
+                        </p>
                         <p><strong>Analysis:</strong> Suggested a non-optimal move when immediate mate was available.</p>
                     </div>
                 </div>
@@ -558,16 +747,26 @@ So the game ends instantly with checkmate.
                     <div class="ai-verdict correct-verdict">✓ Correct</div>
                     <button class="show-response-btn" onclick="toggleResponse('perplexity3')">View Response</button>
                     <div id="perplexity3" class="response-content">
-                        <p><strong>Response:</strong> "The best move for Black in this position is <span class="move-notation">Qxg2#</span>, which delivers immediate checkmate. The black queen on b2 captures the pawn on g2, putting the White king on h1 in check, and there are no pieces that can block, capture, or allow escape."</p>
+                        <p><strong>Response:</strong> 
+                        The best move for Black in this position is Qxg2#, which delivers immediate checkmate. The black queen on b2 captures the pawn on g2, putting the White king on h1 in check, and there are no pieces that can block, capture, or allow escape for the White king.
+Why Qxg2# Is Forced Mate
+•	The queen on g2 is protected by the bishop on c6, so the king cannot capture.
+•	All escape squares (h2, g1) are occupied by White's own pieces, leaving the king with no moves.
+•	No White piece can interpose or capture the queen after the move.
+Additional Notes
+•	Any other move would fail to achieve checkmate on this move, allowing White a chance to win with promotion (e.g., e8=Q+).
+•	This is a classical queen and bishop checkmate, where the bishop supports the queen in front of the enemy king.
+Thus, Qxg2# is the only and best move for Black for immediate victory.
+
+                        </p>
                         <p><strong>Analysis:</strong> Excellent analysis with perfect identification of the mate and explanation.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Summary Section -->
         <div class="analysis-section">
-            <h2>🔍 Comprehensive Analysis & Findings</h2>
+            <h2>Comprehensive Analysis & Findings</h2>
             
             <div class="score-summary">
                 <div class="score-card" style="background: linear-gradient(45deg, #4CAF50, #45a049);">
@@ -591,6 +790,52 @@ So the game ends instantly with checkmate.
                     <div style="color: white;">Perplexity</div>
                 </div>
             </div>
+
+            <h3>Key Findings</h3>
+            
+            <h4>Where AI Succeeded:</h4>
+            <ul style="margin-left: 20px;">
+                <li><strong>Pattern Recognition:</strong> Perplexity and ChatGPT consistently identified correct tactical motifs</li>
+                <li><strong>Mate Recognition:</strong> When AIs got the position right, they could explain checkmate clearly</li>
+                <li><strong>Self-Correction:</strong> ChatGPT showed ability to correct mistakes when given feedback</li>
+            </ul>
+
+            <h4>Where AI Failed:</h4>
+            <ul style="margin-left: 20px;">
+                <li><strong>Board Vision:</strong> Multiple AIs hallucinated pieces or misidentified positions</li>
+                <li><strong>Spatial Understanding:</strong> Confusion about piece locations and king positions</li>
+                <li><strong>Move Legality:</strong> Suggesting impossible moves or moves with wrong pieces</li>
+            </ul>
+
+            <h3>Why These Mistakes Occur</h3>
+            
+            <p><strong>Visual Processing Limitations:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Chess boards have similar-looking squares and pieces</li>
+                <li>Small visual differences between piece types (queen vs rook)</li>
+                <li>Coordinate system confusion (algebraic notation)</li>
+            </ul>
+
+            <p><strong>Context Integration Issues:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Difficulty connecting visual information with logical chess rules</li>
+                <li>Inconsistent piece tracking across the board</li>
+                <li>Missing the forest for the trees - focusing on individual pieces vs. whole position</li>
+            </ul>
+
+            <h3>Implications for AI Development</h3>
+            
+            <p>This experiment reveals that while AI has made tremendous strides in visual understanding, chess position analysis exposes specific weaknesses:</p>
+            
+            <ul style="margin-left: 20px;">
+                <li><strong>Precision Matters:</strong> Chess requires absolute accuracy - "close enough" doesn't work</li>
+                <li><strong>Multi-Modal Challenge:</strong> Success requires both visual parsing AND logical reasoning</li>
+                <li><strong>Domain Knowledge:</strong> Understanding chess rules is as important as seeing the pieces</li>
+                <li><strong>Consistency Issues:</strong> Performance varied wildly even within the same AI system</li>
+            </ul>
+
+        </div>
+        
         <div class="analysis-summary">
             <h2>Comprehensive Analysis Summary</h2>
             <p>Our testing reveals significant differences in chess analysis capabilities among leading AI models.</p>
@@ -636,7 +881,6 @@ So the game ends instantly with checkmate.
             </div>
         </div>
 
-        <!-- Modal for enlarged images -->
         <div id="imageModal" class="modal" onclick="closeModal()">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div class="modal-content">
@@ -650,7 +894,6 @@ So the game ends instantly with checkmate.
             const element = document.getElementById(id);
             const button = element.previousElementSibling;
             
-            // Close all other responses
             const allResponses = document.querySelectorAll('.response-content');
             const allButtons = document.querySelectorAll('.show-response-btn');
             
@@ -661,7 +904,6 @@ So the game ends instantly with checkmate.
                 }
             });
 
-            // Toggle the clicked response
             if (element.style.display === 'block') {
                 element.style.display = 'none';
                 button.textContent = 'View Response';
@@ -677,23 +919,22 @@ So the game ends instantly with checkmate.
             modal.style.display = 'block';
             modalImg.src = img.src;
             modalImg.alt = img.alt;
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto'; 
         }
 
-        // Close modal with Escape key
+ 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Prevent modal from closing when clicking on the image itself
         document.querySelector('.modal-content').addEventListener('click', function(event) {
             event.stopPropagation();
         });
