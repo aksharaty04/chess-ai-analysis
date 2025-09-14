@@ -307,7 +307,30 @@
         <header>
             <h1>♜ Chess AI Analysis ♛</h1>
             <div class="subtitle">Can AI Master the Royal Game?</div>
+            <div style="font-size: 1.1em; opacity: 0.8;">
+                An Interactive Exploration of Chess Position Analysis by Modern AI
+            </div>
         </header>
+
+        <div class="intro-section">
+            <h2>🎯 Research Question & Theme</h2>
+            <p><strong>Question:</strong> How well can modern AI language models analyze chess positions and identify the best moves?</p>
+            
+            <p><strong>Why This Topic?</strong></p>
+            <p>Chess represents the perfect intersection of pattern recognition, strategic thinking, and tactical calculation. Unlike simple object recognition, chess analysis requires understanding complex positional relationships, calculating multiple move sequences, and identifying tactical motifs. This makes it an ideal testbed for evaluating AI's visual and analytical capabilities.</p>
+            
+            <p><strong>What Makes This Fascinating:</strong></p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Chess positions contain rich visual and logical information</li>
+                <li>There are objectively correct answers (unlike subjective image analysis)</li>
+                <li>Mistakes reveal specific gaps in AI reasoning</li>
+                <li>Tests both pattern recognition AND logical analysis</li>
+            </ul>
+
+            <div class="interactive-hint">
+                💡 Click on chess board images to enlarge them • Click AI names to see their full responses
+            </div>
+        </div>
 
         <div class="intro-section">
             <h2>Testing AI Chess Intelligence</h2>
@@ -317,7 +340,7 @@
         <!-- Position 1: Back Rank Mate -->
         <div class="chess-position">
             <div class="position-header">
-                <div class="position-title">Position 1: Mate in One</div>
+                <div class="position-title">Position 1: Next best move for black</div>
                 <div class="difficulty-badge medium">Medium</div>
             </div>
             
@@ -328,7 +351,7 @@
             </div>
             
             <div class="position-description">
-                <strong>Challenge:</strong> Black to move. Find the winning checkmate in one move.
+                <strong>Prompt:</strong> It’s Black to move. What is the best next move? Please analyze the image and tell me the best move for Black.
             </div>
             
             <div class="ai-responses">
@@ -337,8 +360,25 @@
                     <div class="ai-verdict correct-verdict">✓ Correct</div>
                     <button class="show-response-btn" onclick="toggleResponse('chatgpt1')">View Response</button>
                     <div id="chatgpt1" class="response-content">
-                        <p><strong>Response:</strong> "I see the position clearly now. It's Black to move. The best move is: <span class="move-notation">Bxf2#</span> (Bishop captures pawn on f2, checkmate)."</p>
-                        <p><strong>Analysis:</strong> Correctly identified the back rank weakness and the forced checkmate.</p>
+                        <p><strong>Response:</strong> "I see the position clearly now. It’s Black to move.
+•	White’s king is on g1.
+•	Black’s queen is not on the board, but Black has very active pieces (bishop on h3, bishop on h4, knight on g4, knight on b1, rook on h8).
+•	White’s last move was knight to c4, trying to defend.
+The immediate tactical situation:
+Black has a forced checkmate in one move.
+The best move is:
+Bxf2# (Bishop captures pawn on f2, checkmate).
+Explanation:
+•	The bishop on h4 takes the pawn on f2.
+•	White’s king on g1 has no escape squares:
+o	Can’t move to h2 (blocked by own pawn).
+o	Can’t move to f1 or f2 (occupied/attacked).
+o	Can’t move to h1 (rook blocks).
+•	No White piece can capture the bishop or block the check.
+So the game ends instantly with checkmate.
+👉 Best move: Bxf2#.
+"</p>
+                        <p><strong>Analysis:</strong> Perfect analysis with clear explanation of the mating mechanism.</p>
                     </div>
                 </div>
 
@@ -526,6 +566,31 @@
         </div>
 
         <!-- Summary Section -->
+        <div class="analysis-section">
+            <h2>🔍 Comprehensive Analysis & Findings</h2>
+            
+            <div class="score-summary">
+                <div class="score-card" style="background: linear-gradient(45deg, #4CAF50, #45a049);">
+                    <div class="score-number" style="color: white;">2/3</div>
+                    <div style="color: white;">ChatGPT</div>
+                </div>
+                <div class="score-card" style="background: linear-gradient(45deg, #F44336, #d32f2f);">
+                    <div class="score-number" style="color: white;">0/3</div>
+                    <div style="color: white;">Claude AI</div>
+                </div>
+                <div class="score-card" style="background: linear-gradient(45deg, #FF9800, #f57c00);">
+                    <div class="score-number" style="color: white;">1/3</div>
+                    <div style="color: white;">Copilot</div>
+                </div>
+                <div class="score-card" style="background: linear-gradient(45deg, #F44336, #d32f2f);">
+                    <div class="score-number" style="color: white;">0/3</div>
+                    <div style="color: white;">Gemini</div>
+                </div>
+                <div class="score-card" style="background: linear-gradient(45deg, #4CAF50, #45a049);">
+                    <div class="score-number" style="color: white;">3/3</div>
+                    <div style="color: white;">Perplexity</div>
+                </div>
+            </div>
         <div class="analysis-summary">
             <h2>Comprehensive Analysis Summary</h2>
             <p>Our testing reveals significant differences in chess analysis capabilities among leading AI models.</p>
