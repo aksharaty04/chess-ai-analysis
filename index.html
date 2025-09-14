@@ -330,7 +330,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             background: white;
-            border: 1px solid #111111;
+            border: 1px solid #e9ecef;
             transition: transform 0.3s ease;
         }
 
@@ -479,16 +479,6 @@
             color: #bdc3c7;
         }
 
-        .interactive-hint {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-            font-weight: 500;
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -524,6 +514,9 @@
         <header>
             <h1>Chess AI Analysis</h1>
             <div class="subtitle">Can AI Master the Royal Game?</div>
+            <div class="header-description">
+                An Interactive Exploration of Chess Position Analysis by Modern AI Systems
+            </div>
         </header>
 
         <div class="section">
@@ -814,23 +807,23 @@
             <h2>Quantitative Performance Assessment</h2>
             
             <div class="score-summary">
-                <div class="score-card" color="red">
+                <div class="score-card" style="border: 2px solid green;">
                     <div class="score-number">2/3</div>
                     <div class="score-label">ChatGPT-4</div>
                 </div>
-                <div class="score-card">
+                <div class="score-card" style="border: 2px solid red;">
                     <div class="score-number">0/3</div>
                     <div class="score-label">Claude AI</div>
                 </div>
-                <div class="score-card">
+                <div class="score-card" style="border: 2px solid red;">
                     <div class="score-number">1/3</div>
                     <div class="score-label">Microsoft Copilot</div>
                 </div>
-                <div class="score-card">
+                <div class="score-card" style="border: 2px solid red;">
                     <div class="score-number">0/3</div>
                     <div class="score-label">Google Gemini</div>
                 </div>
-                <div class="score-card">
+                <div class="score-card" style="border: 2px solid green;">
                     <div class="score-number">3/3</div>
                     <div class="score-label">Perplexity AI</div>
                 </div>
@@ -888,23 +881,23 @@
             <p>This systematic evaluation provides quantitative assessment of leading AI models' capabilities in chess position analysis, revealing substantial performance variations and identifying specific cognitive limitations in current AI architectures.</p>
             
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card" style="border: 2px solid green;">
                     <div class="stat-number">67%</div>
                     <div class="stat-label">ChatGPT-4 Success Rate</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" style="border: 2px solid red;">
                     <div class="stat-number">0%</div>
                     <div class="stat-label">Claude AI Success Rate</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" style="border: 2px solid red;">
                     <div class="stat-number">33%</div>
                     <div class="stat-label">Microsoft Copilot Success Rate</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" style="border: 2px solid red;">
                     <div class="stat-number">0%</div>
                     <div class="stat-label">Google Gemini Success Rate</div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" style="border: 2px solid green;">
                     <div class="stat-number">100%</div>
                     <div class="stat-label">Perplexity AI Success Rate</div>
                 </div>
@@ -977,7 +970,6 @@
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
 
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
