@@ -977,7 +977,7 @@
             const element = document.getElementById(id);
             const button = element.previousElementSibling;
             
-            // Close all other responses
+     
             const allResponses = document.querySelectorAll('.response-content');
             const allButtons = document.querySelectorAll('.show-response-btn');
             
@@ -988,7 +988,7 @@
                 }
             });
 
-            // Toggle current response
+
             if (element.style.display === 'block') {
                 element.style.display = 'none';
                 button.textContent = 'View Detailed Response';
@@ -1013,14 +1013,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Keyboard navigation
+
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeModal();
             }
         });
 
-        // Prevent modal from closing when clicking on image
+
         document.querySelector('.modal-content').addEventListener('click', function(event) {
             event.stopPropagation();
         });
